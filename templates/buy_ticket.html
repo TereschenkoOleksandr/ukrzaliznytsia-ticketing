@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купівля квитка - Укрзалізниця</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Укрзалізниця</h1>
+        <nav>
+            <a href="{{ url_for('list_trains') }}">Головна</a>
+            <a href="{{ url_for('buy_ticket') }}">Купити квиток</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Купівля квитка</h2>
+        <form method="POST">
+            <label for="train_number">Номер потяга:</label>
+            <select name="train_number" required>
+                {% for train in trains %}
+                    <option value="{{ train.number }}">{{ train.number }} - {{ train.origin }} - {{ train.destination }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="departure_time">Час відправлення:</label>
+            <input type="text" name="departure_time" required><br>
+            <label for="seat">Місце:</label>
+            <input type="text" name="seat" required><br>
+            <input type="submit" value="Купити квиток">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Укрзалізниця. Усі права захищені.</p>
+    </footer>
+</body>
+</html>
